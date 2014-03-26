@@ -1,21 +1,27 @@
-BODY {
+body {
   /* margin-right: auto; */
   /* margin-left: 5ex; */
-  margin: 1em 15% 1em 15%;
-  max-width: 420px;
-  padding: 1ex;
-  background: #ffffff;
-  color: #093f72;
-  font-family: sans-serif;
+  /* margin: 1em 15% 1em 15%; */
+  /* max-width: 420px; */
+  padding: 0;
+  margin: 0;
+  background: #EEE;
+  color: #111;
+  font-family: monospace, sans-serif;
 }
 
-H1 { 
-  text-align: center;
+h1 { 
+  padding: 20px 100px 20px;
+  margin: 0;
+  text-align: left;
+  background: #111;
+  color: #DDD;
+  border-bottom: 2px solid #DDD;
 }
 
 form { 
-  background-color: #ffffff;
-  border: 1px solid; 
+    width: 600px;
+    margin: 30px auto;
 }
 
 INPUT { 

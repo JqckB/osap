@@ -21,39 +21,37 @@ sub login_window
 {
 	my $q = @_[0];
 	
-	print $q->header, $q->start_html(-title=>'OSAP Login',
-					 -style=>{-src=>'/osap/osap.css'});
+	print $q->header, $q->start_html(-title=>'OSAP Login', -style=>{-src=>'/osap/osap.css'});
 	
-	print $q->h1('LAAS visitor\'s network.');
+	print $q->h1('Datlan Connexion');
 	print $q->start_form;
 	print $q->start_table({-width=>'100%'},{-border=>'0'});
-	print $q->Tr($q->td({align=>CENTER}, $q->img({src=>'/osap/Logo-LAAS-CNRS-400.png', 
-				     width=>'400', 
-				     height=>'81'})));
+	print $q->Tr($q->td({align=>CENTER}, $q->img({src=>'/osap/logo.png'})));
+	print $q->end_table, "\n";
+	print $q->start_table({-width=>'100%'},{-border=>'0'});
 	my $register_widget = $q->table({-border=>'0'},
 		$q->Tr($q->td({-colspan=>2, -align=>LEFT}, 
-		'Welcome to the LAAS visitor network.<BR>To enable your access please enter your name and e-mail address below:')),
-		$q->Tr($q->td({-align=>RIGHT}, 'Name:'),
+		'Bienvenu sur la page de connexion.<br/>Pour acceder au reseau internet, merci d\'utiliser vos identifiants Datlan :')),
+		$q->Tr($q->td({-align=>RIGHT}, 'Utilisateur :'),
 			$q->td($q->textfield({-size=>50, name=>'name'}))),
-		$q->Tr($q->td({-align=>RIGHT}, 'E-mail:'),
-			$q->td($q->textfield({-size=>50, name=>'email'}))));
+		$q->Tr($q->td({-align=>RIGHT}, 'Mot de passe:'),
+			$q->td($q->textfield({-size=>50, name=>'email', type=>'password'}))));
 	print $q->Tr($q->td({align=>CENTER}, $register_widget));
-	my $read_terms="I've read and accepted the ";
-	my $terms_link=$q->a({-href=>'/osap/terms.html'}, 'terms of service');
+	my $read_terms="J'ai lu et j'accepte ";
+	my $terms_link=$q->a({-href=>'/osap/terms.html'}, 'les conditions d\'utilisations');
 	print $q->Tr($q->td({-colspan=>2, align=>CENTER},
 			    $q->checkbox({-name=>'terms', 
 					  -class=>'oswap-checkbox',
 					  -label=>$read_terms}),
 			    $terms_link));
 	my $connect_button = $q->table(
-		$q->Tr($q->td($q->submit({-name=>OK, -value=>Cancel,
+		$q->Tr($q->td($q->submit({-name=>OK, -value=>Annuler,
 				-class=>'oswap-button-cancel'})),
-			$q->td($q->submit({-name=>OK, -value=>Connect,
+			$q->td($q->submit({-name=>OK, -value=>Connexion,
 				-class=>'oswap-button-ok'}))));
 	print $q->Tr($q->td({align=>RIGHT}, $connect_button));
 	print $q->end_table, "\n";
 	print $q->end_form, "\n";
-	print $q->div({-align=>RIGHT}, "sysadmin\@laas.fr"), "\n";
 }
 
 #----------------------------------------------------------------------
@@ -67,8 +65,12 @@ sub session_window {
 	my $email = $q->param('email');
 	
 	syslog(LOG_INFO, "session: \'$name\', \'$email\', $ip");
-	print $q->header, $q->start_html(-title=>'LAAS network',
-					 -style=>{-src=>'/osap/osap.css'});
+	print $q->header, $q->start_html(-title=>'OSAP Login', -style=>{-src=>'/osap/osap.css'});
+	
+	print $q->h1('Datlan Connexion');
+	print $q->start_table({-width=>'100%'},{-border=>'0'});
+	print $q->Tr($q->td({align=>CENTER}, $q->img({src=>'/osap/logo.png'})));
+	print $q->end_table, "\n";
 	print $q->start_form;
 	print $q->h2({align=>CENTER}, "You are connected to  the LAAS network.");
 	print $q->h3({align=>CENTER}, "Please keep this window open.");
